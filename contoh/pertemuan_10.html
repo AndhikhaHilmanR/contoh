@@ -1,0 +1,55 @@
+<div id="content">halo</div>
+
+<script>
+  const pbo = {
+    model: {
+      mahasiswa: [
+        { username: 'sri', pin: 'sri123' },
+        { username: 'ratih', pin: 'ratih123' },
+        { username: 'anggi', pin: 'anggi123' },
+      ],
+    },
+    services: {
+      getter: function () {
+        alert('getter');
+      },
+      setter: function () {
+        alert('setter');
+      },
+    },
+    view: {
+      signform: function () {
+        return `
+          username: <input type="text" id="username"><br/>
+          pin: <input type="password" id="pin"><br/>
+          <button id="login">Login</button><br/>
+          <button id="cancel">Cancel</button><br/>
+        `;
+      },
+    },
+    controller: {
+      signin: function () {
+        document.getElementById('login').onclick = function () {
+          alert('login');
+        };
+      },
+      signout: function () {
+        document.getElementById('username').value = '';
+        document.getElementById('pin').value = '';
+      },
+      signform: function () {
+        document.getElementById('content').innerHTML = pbo.view.signform();
+        this.signin(); // Ensure login button functionality is added
+        this.cancel(); // Ensure cancel button functionality is added
+      },
+      cancel: function () {
+        document.getElementById('cancel').onclick = function () {
+          document.getElementById('username').value = '';
+          document.getElementById('pin').value = '';
+        };
+      },
+    },
+  };
+
+  pbo.controller.signform();
+</script>
